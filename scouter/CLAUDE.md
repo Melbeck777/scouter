@@ -47,9 +47,22 @@ When unsure whether something is "core" or "boilerplate", ASK.
 ## Language
 - Conversational explanations to the author: **Japanese**.
 - Code comments, commit messages, and committed docs: **English**.
+- Exception: setup guides under `docs/setup/`, learning notes under
+  `docs/notes/`, and Architecture Decision Records under `docs/adr/` may be
+  written in **Japanese** (they are for the author to read and follow).
 
 ## Conventions
-- Comments, commit messages, and docs: **English only**.
+- Comments, commit messages, and code-level docs: **English** (see the
+  `docs/setup/` exception under Language).
+- Docs are organized by purpose: `docs/tasks/` task specs, `docs/setup/`
+  setup guides/procedures, `docs/notes/` learning explanations (concepts),
+  `docs/adr/` architecture decisions. One topic per file.
+- `docs/notes/_local/` holds private, author-only notes that are NOT pushed
+  (git-ignored). Use it for personal scratch/learning memos; keep shareable
+  explanations in `docs/notes/` proper.
+- Architecture decisions are recorded as ADRs under `docs/adr/`, numbered
+  `NNNN-title.md` (MADR-style: Status / Context / Decision / Consequences).
+  Append-only; supersede an old ADR with a new one rather than rewriting it.
 - Commits: Conventional Commits (`feat:`, `fix:`, `test:`, `chore:`, ...).
 - Keep changes small and reviewable; one logical change per PR.
 - Package layout under `io.github.watanabemi.scouter` (standard Spring layout).
@@ -86,6 +99,10 @@ Notes:
 ## Security & ethics
 - Secrets (API keys/tokens) come from environment variables — never hard-code
   or commit them.
+- Claude must NOT read env files (e.g. `.env`, `~/.config/scouter/env`, any
+  file holding exported secrets). Do not open, print, or echo their contents.
+  To check whether a variable is set, test its presence only (e.g.
+  `echo "${EDINET_API_KEY:+set}"`), never its value.
 - Respect each data source's terms of use; cite sources in generated output.
 - Do not scrape HTML; use the official APIs and CSV downloads only.
 
