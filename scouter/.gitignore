@@ -46,6 +46,9 @@ out/
 application-local.yml
 application-local.properties
 
+# ===== ローカルメモ（push しない個人用ノート）=====
+docs/notes/_local/
+
 # ===== OS =====
 .DS_Store
 
@@ -53,3 +56,7 @@ application-local.properties
 /downloads/
 /output/
 *.zip
+
+# Raw sample downloads (real EDINET data). Not versioned: if a test needs
+# realistic input, curate a small fixture under src/test/resources instead.
+/sample/
